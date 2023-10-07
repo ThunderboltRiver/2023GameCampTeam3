@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class timer : MonoBehaviour
+public class Timer : MonoBehaviour
 {
     [SerializeField]
     private float fSeconds;     //タイムの値
@@ -12,6 +12,11 @@ public class timer : MonoBehaviour
     [SerializeField]
     public TextMeshProUGUI Timertext;  //タイマーのテキスト
 
+    public bool IsTimeOut()
+    {
+        return fSeconds <= 0;
+
+    }
     void Start()
     {
         //テキストに値を代入
