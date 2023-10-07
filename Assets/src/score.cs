@@ -8,19 +8,19 @@ public class Score : MonoBehaviour
 
 
     private int _myScore = 0;
-    int AddScores(int addSores)
+    public int AddScores(int addSores)
     {
         _myScore += addSores;
         testText.text =_myScore.ToString();
         
         return _myScore;
     }
-    //スコア管理のフィード変数
-    //スコアがプラスされる
+    //?X?R?A???????t?B?[?h????
+    //?X?R?A???v???X??????
 
     public bool IsLow(int Score)
     {
         return _myScore < Score;
     }
-    //スコア判定
+    //?X?R?A????
 }
