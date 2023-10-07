@@ -5,21 +5,20 @@ using UnityEngine;
 public class GrassBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private Score score;
+    private Score _score;
 
     [SerializeField]
     private int scorePoint;
 
-    private void Start()
+    public void SetScore(Score score)
     {
-        
+        _score = score;
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Sickle"))
         {
-            score.AddScores(scorePoint);
+            _score.AddScores(scorePoint);
 
             Destroy(gameObject);
         }
