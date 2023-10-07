@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-public class Score:MonoBehaviour
+public class Score : MonoBehaviour
 
 {
     [SerializeField]
@@ -18,7 +18,7 @@ public class Score:MonoBehaviour
     //スコア管理のフィード変数
     //スコアがプラスされる
 
-    public bool Islow(int Score)
+    public bool IsLow(int Score)
     {
         return _myScore < Score;
     }
