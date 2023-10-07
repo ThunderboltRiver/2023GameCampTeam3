@@ -5,46 +5,37 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private Timer m_Time;   //ƒ^ƒCƒ}[‚Ìî•ñ
+    private Timer m_Time;
 
     [SerializeField]
-    private Score m_score;  //ƒXƒRƒA‚Ìî•ñ
+    private Score m_score;
 
     void Start()
     {
-        //ƒtƒŒ[ƒ€ƒŒ[ƒgŒÅ’è
         Application.targetFrameRate = 60;
-
-        //‰Šú‰»
         InitGame();
     }
 
     void Update()
-    {
-        //ƒQ[ƒ€ƒNƒŠƒA‚ÌğŒ®
-
-        
+    {   
         if(m_Time.IsTimeOut() && m_score.IsLow(10))
         {
-            Debug.Log("ƒQ[ƒ€ƒI[ƒo[");
+            Debug.Log("ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½[ï¿½oï¿½[");
         }
 
-        //ƒQ[ƒ€ƒI[ƒo[‚ÌğŒ®
-
         if (Input.GetKeyDown(KeyCode.Escape))
-        {//ESCƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«
-            //ƒQ[ƒ€I—¹
+        {
             Quit();
         }
     }
 
     void InitGame()
-    {//î•ñ‚Ì‰Šú‰»
+    {
         
     }
 
     void Quit()
-    {//ƒAƒvƒŠ‚ÌI—¹ˆ—
+    {
 #if UNITY_ENGINE
         UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_STANDALONE

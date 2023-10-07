@@ -8,12 +8,21 @@ public class Sickle : MonoBehaviour
 
     private void Start()
     {
-        ///<summary>
-        ///鎌のColliderを取得
-        ///鎌はプレイヤーの最初のこオブジェクトにしてくれ！
-        /// </summary>
-        _collider = transform.GetChild(0).gameObject.GetComponent<Collider>();
+        _collider = gameObject.GetComponent<Collider>();
         _collider.enabled = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            //当たり判定をON
+            CollisionDetectionOn();
+            Debug.Log("当たり判定ON");
+            return;
+        }
+        //当たり判定をOFF
+        CollisionDetectionOff();
     }
 
     public void CollisionDetectionOn()
