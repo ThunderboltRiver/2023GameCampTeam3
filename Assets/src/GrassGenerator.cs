@@ -3,28 +3,37 @@ using UnityEngine.SceneManagement;
 
 public class GrassGenerator : MonoBehaviour
 {
+    [Header("Generate Setting")]
+    [SerializeField] private Vector2 size = new(5, 5);
+    [SerializeField] private int spawnCount;
+    [SerializeField] private int timeInterval = 20;
+    private int currentNum = 0;
+
     [Header("Prefabs")]
     [SerializeField] private GameObject[] grassPrefabs;
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] Grass[] grasses;
-
-    [Header("Generate Setting")]
-    [SerializeField] private Vector2 size = new(5, 5);
-    [SerializeField] private int spawnCount;
-    private int currentNum = 0;
+    //[SerializeField] Score score;
 
     [Header("Key Bindings")]
     [SerializeField] private KeyCode reGenerate = KeyCode.R;
 
-    private void Start()
-    {
-        SpawnStart();
-    }
+    private float time;
 
     private void Update()
     {
         if (Input.GetKeyDown(reGenerate))
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+    }
+
+    private void FixedUpdate()
+    {
+        time += Time.deltaTime;
+        if (Mathf.Round(time) % timeInterval == 0)
+        {
+            SpawnStart();
+        }
     }
 
     private void SpawnStart()
@@ -36,13 +45,14 @@ public class GrassGenerator : MonoBehaviour
                 Vector3 grassPos = new Vector3(Random.Range(-size.x / 2, size.x / 2), 0, Random.Range(-size.y / 2, size.y / 2));
                 SpawnGrass(grassPos);
             }
-            currentNum++;
+            if (currentNum < grasses.Length)
+                currentNum++;
         }
     }
 
     private void SpawnGrass(Vector3 position)
     {
-        GameObject enemy = grassPrefabs[currentNum];
-        Instantiate(enemy, position, Quaternion.identity, transform);
+        GameObject grass = grassPrefabs[currentNum];
+        Instantiate(grass, position, Quaternion.identity, transform);
     }
 }
