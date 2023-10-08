@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sickle : MonoBehaviour
 {
+    public GameObject sickleObj;
     Collider _collider;//鎌のCollider
 
     private void Start()
@@ -12,7 +13,7 @@ public class Sickle : MonoBehaviour
         ///鎌のColliderを取得
         ///鎌はプレイヤーの最初のこオブジェクトにしてくれ！
         /// </summary>
-        _collider = transform.GetChild(0).gameObject.GetComponent<Collider>();
+        _collider = sickleObj.GetComponent<Collider>();
         _collider.enabled = false;
     }
 

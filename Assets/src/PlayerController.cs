@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private CapsuleCollider _collider;
 
+    bool cutting;
+
     void Start()
     {
         playerAnim = GetComponent<Animator>();
@@ -50,10 +52,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveSpeed = moveSpeedIn + 50;
+            moveSpeed = moveSpeedIn + 80;
             moveAnimSet = 2;
         }
         else
@@ -86,6 +87,12 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = nextRot;
 
+        //左クリックで刈る
+        if (Input.GetMouseButton(0))
+        {
+            playerAnim.SetTrigger("Cut");
+            cutting = true;
+        }
 
         if (GetNormalVectorOnPlane() != null)
         {
@@ -93,26 +100,29 @@ public class PlayerController : MonoBehaviour
 
             var direction = Vector3.zero;
 
-            if (Input.GetKey(KeyCode.W))
+            if (cutting == false)
             {
-                direction += moveSpeed * cameraForward;
+                if (Input.GetKey(KeyCode.W))
+                {
+                    direction += moveSpeed * cameraForward;
 
-            }
+                }
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                direction += -moveSpeed * cameraRight;
-            }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    direction += -moveSpeed * cameraRight;
+                }
 
 
-            if (Input.GetKey(KeyCode.S))
-            {
-                direction += -moveSpeed * cameraForward;
-            }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    direction += -moveSpeed * cameraForward;
+                }
 
-            if (Input.GetKey(KeyCode.D))
-            {
-                direction += moveSpeed * cameraRight;
+                if (Input.GetKey(KeyCode.D))
+                {
+                    direction += moveSpeed * cameraRight;
+                }
             }
 
             if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S))
@@ -126,14 +136,23 @@ public class PlayerController : MonoBehaviour
             }
 
             MoveToInputedDirection(direction);
-            if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+
+            if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
+            {
+                playerRb.isKinematic = true;
+                moveAnim = 0;
+            }
+
+            if(cutting == true)
             {
                 playerRb.isKinematic = true;
             }
+
+            
         } 
 
-        //アニメーション一旦
-        //playerAnim.SetInteger("Move", moveAnim);
+        //アニメーション
+        playerAnim.SetInteger("Move", moveAnim);
 
     }
 
@@ -154,4 +173,11 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(inputed - playerRb.velocity / Time.fixedDeltaTime, ForceMode.Acceleration);
         moveAnim = moveAnimSet;
     }
+
+    public void CutEnd()
+    {
+        cutting = false;
+        Debug.Log("hoge");
+    }
+
 }
