@@ -5,13 +5,16 @@ public class Score : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI testText;
-
-
     private int _myScore = 0;
+
+    void Start()
+    {
+        testText.text = $"Score:{_myScore}";
+    }
     public int AddScores(int addSores)
     {
         _myScore += addSores;
-        testText.text =_myScore.ToString();
+        testText.text =$"Score:{_myScore}";
         
         return _myScore;
     }

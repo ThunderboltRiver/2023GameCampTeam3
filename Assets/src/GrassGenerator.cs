@@ -9,10 +9,12 @@ public class GrassGenerator : MonoBehaviour
     [SerializeField] private int timeInterval;
     [SerializeField] private int generateThreshold;
 
+    [Header("Grass Setting")]
+    [SerializeField] private Score _score;
+
     [Header("Prefabs")]
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] GrassData[] grassDatas;
-    //[SerializeField] Score score;
     [Header("Key Bindings")]
     [SerializeField] private KeyCode reGenerate = KeyCode.R;
 
@@ -47,16 +49,19 @@ public class GrassGenerator : MonoBehaviour
             for (var i = 0; i < generateNum; i++)
             {
                 var generatePosition = new Vector3(Random.Range(-size.x, size.x), 0, Random.Range(-size.y, size.y));
-                SpawnGrass(grassData.Prefab, generatePosition);
+                SpawnGrass(grassData, generatePosition);
             }
         }
 
     }
 
-    private void SpawnGrass(GameObject grass,Vector3 position)
+    private void SpawnGrass(GrassData grass,Vector3 position)
     {
         if(generateCount >= generateThreshold) return;
-        Instantiate(grass, position, Quaternion.identity, transform);
+        var gameObject = Instantiate(grass.Prefab, position, Quaternion.identity, transform);
+        var grassBehaviour = gameObject.AddComponent<GrassBehaviour>();
+        grassBehaviour.SetScore(_score, grass.ScorePoint);
+        grassBehaviour.OnCut += () => generateCount--;
         generateCount++;
     }
 }
