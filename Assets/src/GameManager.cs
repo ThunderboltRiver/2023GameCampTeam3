@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {   
         if(m_Time.IsTimeOut() && m_score.IsLow(10))
         {
-            Debug.Log("�Q�[���I�[�o�[");
+            Debug.Log("a");
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
