@@ -28,7 +28,6 @@ public class Timer : MonoBehaviour
         //ŽžŠÔŒ¸ŽZ
         if(fSeconds > 0)
             fSeconds -= Time.deltaTime;
-
         //•\Ž¦‚·‚éŽžŠÔ
         Timertext.text = (Mathf.Round(fSeconds * 1) / 1).ToString();
     }
