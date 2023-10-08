@@ -136,6 +136,10 @@ PrefabInstance:
       value: GrassGenerator
       objectReference: {fileID: 0}
     - target: {fileID: 6897666869799845699, guid: dc4174c7a1645a441bd37e49f5df02b4, type: 3}
+      propertyPath: score
+      value: 
+      objectReference: {fileID: 1764206368}
+    - target: {fileID: 6897666869799845699, guid: dc4174c7a1645a441bd37e49f5df02b4, type: 3}
       propertyPath: size.x
       value: 100
       objectReference: {fileID: 0}
@@ -597,6 +601,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f7c7a4528e56f943adb1d62d407cafe, type: 3}
+--- !u!114 &1764206368 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1089397557143895723, guid: 98cc3131710104e43922657e15ddd555, type: 3}
+  m_PrefabInstance: {fileID: 910078232}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c26d68582dbcff344a4ac061d2fed8ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1890601673
 PrefabInstance:
   m_ObjectHideFlags: 0

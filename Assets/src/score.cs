@@ -9,13 +9,13 @@ public class Score : MonoBehaviour
 
     void Start()
     {
-        testText.text = $"Score:{_myScore}";
+        testText.text = $"Score\n{_myScore}";
     }
-    public int AddScores(int addSores)
+    public int AddScores(int addScores)
     {
-        _myScore += addSores;
-        testText.text =$"Score:{_myScore}";
-        
+        _myScore += addScores;
+        testText.text = $"Score\n{_myScore}";
+
         return _myScore;
     }
     //?X?R?A???????t?B?[?h????
