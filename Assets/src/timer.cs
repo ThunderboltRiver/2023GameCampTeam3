@@ -31,4 +31,10 @@ public class Timer : MonoBehaviour
         //•\Ž¦‚·‚éŽžŠÔ
         Timertext.text = (Mathf.Round(fSeconds * 1) / 1).ToString();
     }
+    public void AddTime(int seconds)
+    {
+        fSeconds += seconds;
+        Timertext.text = (Mathf.Round(fSeconds * 1) / 1).ToString();
+
+    }
 }
